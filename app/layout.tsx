@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Ubuntu } from "next/font/google";
+import { Ubuntu, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -21,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${ubuntu.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", ubuntu.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

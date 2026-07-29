@@ -34,10 +34,10 @@ export default function Home() {
           <Image
             src="/home.jpg"
             alt="home app"
-            width={600}
-            height={400}
+            width={800}
+            height={600}
             priority
-            className="w-[600px] h-[70vh] max-w-full border-2 border-gray-300 rounded-lg shadow-lg"
+            className="w-[800px] h-[70vh] max-w-full border-2 border-gray-300 rounded-lg shadow-lg"
           />
         </div>
       </div>
