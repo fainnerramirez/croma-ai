@@ -1,46 +1,94 @@
-import { Button } from "@heroui/react";
-import { Palette } from "lucide-react";
+'use client';
+
+import { auth } from "@/firebase/config";
+import { Button, Chip } from "@heroui/react";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { Sparkles, Wand2 } from "lucide-react";
 import Image from "next/image";
+import { AuthForm } from "./croma/components/AuthForm";
 import Header from "./home/components/header";
 
 export default function Home() {
+
+  const handleSignInUser = async () => {
+    try {
+      const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
+      console.log("User logged: ", user)
+    }
+    catch (error) {
+      console.error("Error al iniciar sesión ", error);
+    }
+  }
+
   return (
-    <div className="flex flex-col gap-5 min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-transparent text-slate-900">
       <Header />
-      <div className="flex flex-col md:flex-row gap-5 justify-center items-center w-[90%] m-auto">
-        <div className="w-1/2 p-2 block md:hidden">
-          <Image
-            src="/home.jpg"
-            alt="home app"
-            width={200}
-            height={150}
-            priority
-            className="w-[200px] h-[100px] border-2 border-gray-300 rounded-lg shadow-lg"
-          />
-        </div>
-        <div className="w-full md:w-1/2 p-2 flex flex-col gap-5">
-          <h1 className="font-bold text-4xl md:text-5xl text-center md:text-left">
-            Encuentra la paleta perfecta para cualquier proyecto
-          </h1>
-          <h3>
-            Desde una simple descripción, la IA genera colores listos para usar en diseño, branding o desarrollo.
-          </h3>
-          <Button size="lg" className="w-full md:w-fit gap-2">
-            <Palette />
-            Crear paleta
-          </Button>
-        </div>
-        <div className="w-1/2 p-2 hidden md:block">
-          <Image
-            src="/home.jpg"
-            alt="home app"
-            width={800}
-            height={600}
-            priority
-            className="w-[800px] h-[70vh] max-w-full border-2 border-gray-300 rounded-lg shadow-lg"
-          />
-        </div>
-      </div>
+
+      <main className="mx-auto flex w-[92%] max-w-7xl flex-col gap-8 px-2 py-8 md:py-12">
+        <section className="grid items-center gap-8 rounded-[2rem] border border-white/70 bg-white/80 p-6 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)] backdrop-blur md:grid-cols-[1.1fr_0.9fr] md:p-10">
+          <div className="flex flex-col gap-5">
+            <Chip color="default" variant="soft">
+              <span className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4" />
+                Nueva experiencia visual
+              </span>
+            </Chip>
+
+            <div className="space-y-3">
+              <h1 className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">
+                Encuentra la paleta perfecta para cualquier proyecto
+              </h1>
+              <p className="max-w-xl text-lg text-slate-600">
+                Desde una idea simple, Croma crea combinaciones de color listas para usar en diseño, branding y desarrollo.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <AuthForm handleSignIn={handleSignInUser} />
+              <Button variant="ghost">
+                <Wand2 className="h-5 w-5" />
+                Ver funciones
+              </Button>
+            </div>
+
+            {/* <ul className="grid gap-2 text-sm text-slate-600 sm:grid-cols-3">
+              {highlights.map((item) => (
+                <li key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
+                  {item}
+                </li>
+              ))}
+            </ul> */}
+          </div>
+
+          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-950 p-2 shadow-lg">
+            <Image
+              src="/home.jpg"
+              alt="Vista previa de Croma"
+              width={800}
+              height={600}
+              priority
+              className="h-auto w-full rounded-[1.2rem] object-cover"
+            />
+          </div>
+        </section>
+
+        {/* <section id="features" className="grid gap-4 md:grid-cols-3">
+          {[
+            { title: "Diseño rápido", text: "Obtén tonalidades armoniosas con una sola descripción." },
+            { title: "Accesible", text: "Tu paleta queda lista para implementar en UI y productos." },
+            { title: "Flexible", text: "Cámbiala, compártela y úsala en tus proyectos reales." },
+          ].map((card) => (
+            <Card key={card.title} className="border border-slate-200 bg-white/80 p-4 shadow-sm">
+              <div className="pb-2">
+                <h2 className="text-lg font-semibold text-slate-900">{card.title}</h2>
+              </div>
+              <div>
+                <p className="text-sm leading-6 text-slate-600">{card.text}</p>
+              </div>
+            </Card>
+          ))}
+        </section> */}
+      </main>
     </div>
   );
 }
