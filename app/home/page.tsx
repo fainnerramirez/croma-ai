@@ -1,18 +1,18 @@
+'use client'
+
+import { useStoreCroma } from "@/store/config"
 
 export default function HomePage() {
+    const { user } = useStoreCroma()
     return (
         <div className="">
-            <div className="">
-                <h1 className="">
-                    Encuentra la paleta perfecta para cualquier proyecto
-                </h1>
-                <h3>
-                    Desde una simple descripción, la IA genera colores listos para usar en diseño, branding o desarrollo.
-                </h3>
-            </div>
-            <div className="">
-                <img src={"./home.png"} alt="home image" />
-            </div>
+            <h1 className="text-3xl font-bold">Home Page</h1>
+            <p className="text-lg">Welcome to the home page!</p>
+            {user ? (
+                <p className="text-green-600">Logged in as: {user.displayName}</p>
+            ) : (
+                <p className="text-red-600">Not logged in</p>
+            )}
         </div>
     )
 }

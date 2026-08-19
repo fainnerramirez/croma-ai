@@ -9,15 +9,19 @@ import { AuthForm } from "./croma/components/AuthForm";
 import Header from "./home/components/header";
 import { BorderBeam } from "@stianlarsen/border-beam";
 import { BsGoogle } from "react-icons/bs";
-// @ts-ignore
-// import "@stianlarsen/border-beam/css";
+import { useStoreCroma } from "@/store/config";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+
+  const router = useRouter();
+  const { setUser } = useStoreCroma()
 
   const handleSignInUser = async () => {
     try {
       const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
-      console.log("User logged: ", user)
+      setUser(user);
+      router.push('/home');
     }
     catch (error) {
       console.error("Error al iniciar sesión ", error);
@@ -27,7 +31,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-transparent text-slate-900">
       <Header />
-
       <main className="mx-auto flex w-[92%] max-w-7xl flex-col gap-8 px-2 py-8 md:py-12">
         <section className="grid items-center gap-8 rounded-[2rem] border border-white/70 bg-white/80 p-6 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)] backdrop-blur md:grid-cols-[1.1fr_0.9fr] md:p-10">
           <div className="flex flex-col gap-5">
@@ -51,7 +54,7 @@ export default function Home() {
             <div className="flex gap-3 sm:flex-row items-center">
               <h3>Continuar con</h3>
               <Button onPress={handleSignInUser} className="rounded-full h-14 w-14">
-                <BsGoogle size="lg"/>
+                <BsGoogle size="lg" />
               </Button>
               {/* <AuthForm handleSignIn={handleSignInUser} /> */}
             </div>

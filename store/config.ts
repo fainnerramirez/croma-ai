@@ -6,17 +6,17 @@ type State = {
 }
 
 type Actions = {
-    setUser: () => void
+    setUser: (user: User | null) => void
 }
 
 type Store = State & Actions;
 
 const createStore = create<Store>()((set) => ({
     user: null,
-    setUser: () => set((state) => ({ user: state.user })),
+    setUser: (user) => set((state) => ({ user })),
 }))
 
-export const useStore = () => {
+export const useStoreCroma = () => {
     const { user, setUser } = createStore()
     return {
         user,
