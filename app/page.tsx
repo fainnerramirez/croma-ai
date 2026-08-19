@@ -8,6 +8,7 @@ import Image from "next/image";
 import { AuthForm } from "./croma/components/AuthForm";
 import Header from "./home/components/header";
 import { BorderBeam } from "@stianlarsen/border-beam";
+import { BsGoogle } from "react-icons/bs";
 // @ts-ignore
 // import "@stianlarsen/border-beam/css";
 
@@ -35,7 +36,7 @@ export default function Home() {
                 <Sparkles className="h-4 w-4" />
                 Nueva experiencia visual
               </span>
-              <BorderBeam borderWidth={4} duration={5}/>
+              <BorderBeam borderWidth={4} duration={5} />
             </Chip>
 
             <div className="space-y-3">
@@ -47,8 +48,12 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <AuthForm handleSignIn={handleSignInUser} />
+            <div className="flex gap-3 sm:flex-row items-center">
+              <h3>Continuar con</h3>
+              <Button onPress={handleSignInUser} className="rounded-full h-14 w-14">
+                <BsGoogle size="lg"/>
+              </Button>
+              {/* <AuthForm handleSignIn={handleSignInUser} /> */}
             </div>
 
             {/* <ul className="grid gap-2 text-sm text-slate-600 sm:grid-cols-3">
@@ -69,7 +74,7 @@ export default function Home() {
               priority
               className="h-[350px] w-full rounded-[1.2rem] object-cover object-center"
             />
-          </div> 
+          </div>
         </section>
 
         {/* <section id="features" className="grid gap-4 md:grid-cols-3">
