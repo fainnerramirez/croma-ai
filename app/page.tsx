@@ -45,10 +45,6 @@ export default function Home() {
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <AuthForm handleSignIn={handleSignInUser} />
-              <Button variant="ghost">
-                <Wand2 className="h-5 w-5" />
-                Ver funciones
-              </Button>
             </div>
 
             {/* <ul className="grid gap-2 text-sm text-slate-600 sm:grid-cols-3">
@@ -65,11 +61,11 @@ export default function Home() {
               src="/home.jpg"
               alt="Vista previa de Croma"
               width={800}
-              height={600}
+              height={400}
               priority
-              className="h-auto w-full rounded-[1.2rem] object-cover"
+              className="h-[350px] w-full rounded-[1.2rem] object-cover object-center"
             />
-          </div>
+          </div> 
         </section>
 
         {/* <section id="features" className="grid gap-4 md:grid-cols-3">
