@@ -7,6 +7,9 @@ import { Sparkles, Wand2 } from "lucide-react";
 import Image from "next/image";
 import { AuthForm } from "./croma/components/AuthForm";
 import Header from "./home/components/header";
+import { BorderBeam } from "@stianlarsen/border-beam";
+// @ts-ignore
+// import "@stianlarsen/border-beam/css";
 
 export default function Home() {
 
@@ -27,11 +30,12 @@ export default function Home() {
       <main className="mx-auto flex w-[92%] max-w-7xl flex-col gap-8 px-2 py-8 md:py-12">
         <section className="grid items-center gap-8 rounded-[2rem] border border-white/70 bg-white/80 p-6 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.2)] backdrop-blur md:grid-cols-[1.1fr_0.9fr] md:p-10">
           <div className="flex flex-col gap-5">
-            <Chip color="default" variant="soft">
+            <Chip color="default" variant="soft" className="relative p-2">
               <span className="flex items-center gap-2">
                 <Sparkles className="h-4 w-4" />
                 Nueva experiencia visual
               </span>
+              <BorderBeam borderWidth={4} duration={5}/>
             </Chip>
 
             <div className="space-y-3">
@@ -56,12 +60,12 @@ export default function Home() {
             </ul> */}
           </div>
 
-          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-950 p-2 shadow-lg">
+          <div className="hidden rounded-[1.5rem] border border-slate-200 bg-slate-950 p-2 shadow-lg md:block">
             <Image
               src="/home.jpg"
               alt="Vista previa de Croma"
               width={800}
-              height={400}
+              height={350}
               priority
               className="h-[350px] w-full rounded-[1.2rem] object-cover object-center"
             />

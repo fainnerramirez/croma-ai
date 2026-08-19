@@ -10,7 +10,7 @@ export function AuthForm({ handleSignIn }: { handleSignIn: Function }) {
 
   return (
     <Modal>
-      <Button onPress={() => setIsOpen(true)}>
+      <Button onPress={() => setIsOpen(true)} className="w-full sm:w-auto" variant="primary">
         <Palette />
         Crear paleta
       </Button>
